@@ -24,20 +24,16 @@ ws.onmessage = (e) => {
   const { data: message } = e;
 
   const messageEl = document.createElement('li');
-  messageEl.innerText = `Servidor: ${message}`;
-
+  messageEl.innerText = message;
   messagesList.appendChild(messageEl);
 };
 
 const submitHandler = (e) => {
   e.preventDefault();
 
-  ws.send(`From client: ${messageInput.value}`);
+  const messageToSend = `Algum cliente: ${messageInput.value}`;
 
-  const messageEl = document.createElement('li');
-  messageEl.innerText = `Cliente: ${messageInput.value}`;
-
-  messagesList.appendChild(messageEl);
+  ws.send(messageToSend);
 
   messageInput.value = '';
 }

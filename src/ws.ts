@@ -10,13 +10,17 @@ export function runServer() {
   })
 
   wss.on('connection', (ws) => {
-    console.log('Nova conexão WS criada!');
+    console.log('Nova conexão WS criada!', wss.clients.size, 'totais.');
 
-    ws.send('Ei, cliente!');
-    ws.send('Sou eu, o servidor!');
+    ws.send('Servidor: Ei, cliente!');
+    ws.send('Servidor: Sou eu, o servidor!');
 
     ws.on('message', (message) => {
       console.log(message);
+      wss.clients.forEach(client => {
+        if (client.readyState !== WebSocket.OPEN) return;
+        client.send(message);
+      });
     });
   });
 }
