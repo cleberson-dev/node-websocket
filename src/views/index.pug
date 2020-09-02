@@ -4,6 +4,13 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title 🐶 WebSockets with Node.js
-    script(src="/static/scripts/client.js")
   body
     h1 Hello, world 🐶
+    form#sendToWSForm
+      div
+        label Mensagem: 
+        input#messageInput(type="text")
+      button(type="submit") Enviar
+    ul#messagesList
+    script(src="/static/scripts/client.js")
+

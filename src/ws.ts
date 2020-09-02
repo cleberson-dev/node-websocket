@@ -10,11 +10,13 @@ export function runServer() {
   })
 
   wss.on('connection', (ws) => {
-    ws.send('Hey, client!');
-    ws.send('Ho, client! Its me, server!');
+    console.log('Nova conexão WS criada!');
+
+    ws.send('Ei, cliente!');
+    ws.send('Sou eu, o servidor!');
 
     ws.on('message', (message) => {
-      console.log('Mensagem recebida: ' + message);
+      console.log(message);
     });
   });
 }
