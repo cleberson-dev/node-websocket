@@ -1,20 +1,20 @@
 import WebSocket from 'ws';
 
-const PORT = Number(process.env.WS_PORT) || 6000;
+const PORT = 8080;
 
 export function runServer() {
   const wss = new WebSocket.Server({ port: PORT });
 
   wss.on('listening', () => {
-    console.log(`WS Server listening on port ${PORT}`);
+    console.log(`WS server listening on port ${PORT}`);
   })
 
   wss.on('connection', (ws) => {
+    ws.send('Hey, client!');
+    ws.send('Ho, client! Its me, server!');
+
     ws.on('message', (message) => {
       console.log('Mensagem recebida: ' + message);
     });
-
-    ws.send('Hey!');
-    ws.send('Ho!');
   });
 }
